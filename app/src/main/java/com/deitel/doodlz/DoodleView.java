@@ -3,7 +3,9 @@
 package com.deitel.doodlz;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -16,7 +18,6 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -91,6 +92,13 @@ public class DoodleView extends View
    public int getBackgroundColor()
    {
       return this.paintBackground;
+   }
+   public void loadBackground()
+   {
+      Resources res = getResources();
+      Bitmap bitmap = BitmapFactory.decodeResource(res, R.drawable.tony);
+      bitmapCanvas.drawBitmap(bitmap, 0, 0, paintScreen);
+
    }
 
    // set the painted line's width

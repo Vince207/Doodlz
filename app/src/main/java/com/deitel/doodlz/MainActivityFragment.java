@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+
 public class MainActivityFragment extends Fragment
 {
    private DoodleView doodleView; // handles touch events and draws
@@ -162,6 +163,9 @@ public class MainActivityFragment extends Fragment
          case R.id.delete_drawing:
             confirmErase(); // confirm before erasing image
             return true; // consume the menu event
+          case R.id.load:
+            doodleView.loadBackground();
+              return true;
          case R.id.save:
             saveImage(); // check permission and save current image
             return true; // consume the menu event
@@ -190,8 +194,7 @@ public class MainActivityFragment extends Fragment
             builder.setMessage(R.string.permission_explanation);
 
             // add an OK button to the dialog
-            builder.setPositiveButton(android.R.string.ok,
-               new DialogInterface.OnClickListener()
+            builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
                {
                   @Override
                   public void onClick(DialogInterface dialog, int which)
@@ -233,15 +236,18 @@ public class MainActivityFragment extends Fragment
    }
 
    // returns the DoodleView
-   public DoodleView getDoodleView() {
+   public DoodleView getDoodleView()
+   {
       return doodleView;
    }
 
    // indicates whether a dialog is displayed
-   public void setDialogOnScreen(boolean visible) {
+   public void setDialogOnScreen(boolean visible)
+   {
       dialogOnScreen = visible;
    }
 }
+
 
 /**************************************************************************
  * (C) Copyright 1992-2016 by Deitel & Associates, Inc. and               *
